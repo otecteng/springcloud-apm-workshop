@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: product
+  cloud:
+    consul:
+      host: ${CONSUL_HOST:localhost}
+      port: 8500
+      enabled: true
+      ribbon:
+        enabled: true
+      discovery:
+        enabled: true
+        register: true
+        preferIpAddress: true
+        instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+        tags: ${CONSUL_TAGS:default}
+        defaultQueryTag: ${CONSUL_TAGS:default}
+        heartbeat:
+          enabled: true
+          ttlValue: 10
+      config:
+        enabled: false
+management:
+  security:
+    enabled: false
