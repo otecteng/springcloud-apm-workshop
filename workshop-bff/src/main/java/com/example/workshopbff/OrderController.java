@@ -21,7 +21,7 @@ public class OrderController {
 //    }
 
     //no deep call chain
-    @GetMapping
+    @GetMapping("/{id}")
     public Order get(){
         Order order =  orderClient.get("1");
         order.product = productClient.get("1").name;

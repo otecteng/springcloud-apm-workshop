@@ -1,0 +1,28 @@
+version: '2'
+services:
+  bff:
+    container_name: bff
+    image: workshop/bff:1
+    environment:
+        CONSUL_HOST: "ec2-54-179-179-235.ap-southeast-1.compute.amazonaws.com"
+        JAVA_OPTS: "-Xmx256m -Xms256m"
+    ports:
+        - 5678:5678
+    networks:
+        - workshop
+    command: ["java", "-jar", "app.jar"]
+
+  product:
+    container_name: product
+    #command: consul agent -dev -bind=0.0.0.0 -client=0.0.0.0
+    image: workshop/product:1
+    environment:
+        CONSUL_HOST: "ec2-54-179-179-235.ap-southeast-1.compute.amazonaws.com"
+        JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+        - workshop
+    command: ["java", "-jar", "app.jar"]
+
+networks:
+    workshop:
+        driver: bridge

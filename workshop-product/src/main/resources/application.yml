@@ -1,2 +1,6 @@
 server:
   port: 0
+
+spring:
+  zipkin:
+    base-url: http://${ZIPKIN_HOST:ec2-54-179-179-235.ap-southeast-1.compute.amazonaws.com}:9411

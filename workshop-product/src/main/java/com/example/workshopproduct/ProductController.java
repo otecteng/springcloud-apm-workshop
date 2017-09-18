@@ -13,16 +13,16 @@ import java.util.Vector;
 public class ProductController {
 
     @Autowired ProductRepository productRepository;
-    Random r = new Random(2000);
+    Random r = new Random(100);
     @GetMapping
     public List<Product> list(){
         try {
-            int t = r.nextInt(2000);
-            System.out.println("------- sleep " + t);
-            Thread.sleep(t);
-
+            int t = r.nextInt(100);
+            if(t<10) {
+                System.out.println("------- sleep " + t);
+                Thread.sleep(1200);
+            }
         }catch (Exception ex){
-            ;
         }
         return productRepository.findAll();
     }
